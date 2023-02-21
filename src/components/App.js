@@ -14,7 +14,7 @@ function App() {
   };
 
   const saveTask = (currTask) => {
-    if (editTask !== "") {
+    if (editText !== "") {
       let list = taskList;
       let pos = getPos(list, currTask);
       list[pos].task = editText;
@@ -25,6 +25,10 @@ function App() {
   };
 
   const editTask = (currTask) => {
+    setEditText("");
+    taskList.forEach((item) => {
+      item.open = false;
+    });
     let list = taskList;
     let pos = getPos(list, currTask);
     setEditText(currTask.task);
@@ -76,7 +80,9 @@ function App() {
                       Save
                     </button>
                   ) : (
-                    ""
+                    <button className="saveTask" disabled>
+                      Save
+                    </button>
                   )}
                 </>
               ) : (
